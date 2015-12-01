@@ -11,8 +11,8 @@ angular.module('chatApp')
       var oldNick = nickName;
       nickName = match[1];
       $scope.message = '';
-      $scope.messageLog = messageFormatter(new Date(), 
-                      nickName, 'nickname changed - from ' + 
+      $scope.messageLog = messageFormatter(new Date(),
+                      nickName, 'nickname changed - from ' +
                         oldNick + ' to ' + nickName + '!') + $scope.messageLog;
       $scope.nickName = nickName;
     }
@@ -27,8 +27,9 @@ angular.module('chatApp')
     if (!data.payload) {
       $log.error('invalid message', 'event', event, 'data', JSON.stringify(data));
       return;
-    } 
+    }
     $scope.$apply(function() {
+      console.log($scope.messageLog, "message log")
       $scope.messageLog = $scope.messageLog + messageFormatter(new Date(), data.source, data.payload);
     });
   });
